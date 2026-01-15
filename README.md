@@ -106,39 +106,7 @@ CREATE TABLE sq_active_sessions (
 );
 ```
 
-### sq_user_records (玩家历史)
 
-```sql
-CREATE TABLE sq_user_records (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    server_id INT NOT NULL,
-    steam_id BIGINT NOT NULL,
-    eos_id VARCHAR(64),
-    player_name VARCHAR(128),
-    is_online TINYINT DEFAULT 0,
-    last_seen DATETIME,
-    UNIQUE KEY uk_server_steam (server_id, steam_id)
-);
-```
-
-### sq_round_stats (对局统计)
-
-```sql
-CREATE TABLE sq_round_stats (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    server_id INT NOT NULL,
-    match_id VARCHAR(32) NOT NULL,
-    player_name VARCHAR(128),
-    player_steam_id BIGINT,
-    player_eos_id VARCHAR(64),
-    kill_count INT DEFAULT 0,
-    wound_count INT DEFAULT 0,
-    death_count INT DEFAULT 0,
-    revive_count INT DEFAULT 0,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY uk_match_player (server_id, match_id, player_eos_id)
-);
-```
 
 ### 其他表结构请参考代码中的SQL语句自行创建
 
